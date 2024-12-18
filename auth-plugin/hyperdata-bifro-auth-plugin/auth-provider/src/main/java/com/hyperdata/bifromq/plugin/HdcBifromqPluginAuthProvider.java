@@ -40,6 +40,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 import java.time.Duration;
+import java.util.Properties;
 import java.util.concurrent.CompletableFuture;
 
 @Extension
@@ -53,7 +54,10 @@ public class HdcBifromqPluginAuthProvider implements IAuthProvider {
     public HdcBifromqPluginAuthProvider(HdcBifromqPluginContext context) {
         log.info("TODO: Initialize your AuthProvider using context: {}", context);
 
-        
+         Properties properties = System.getProperties();
+        // Java 8
+        properties.forEach((k, v) -> System.out.println(k + ":" + v));
+
         String webhookUrl = System.getProperty(PLUGIN_AUTHPROVIDER_URL);
         if (webhookUrl == null) {
             log.error("No webhook url specified, the fallback behavior will reject all auth/check requests.");
@@ -147,7 +151,7 @@ public class HdcBifromqPluginAuthProvider implements IAuthProvider {
                                 }
                                 })
                                 .exceptionally(e -> {
-                                System.out.println("Failed to call webhook: " + e.getMessage());
+                                log.error("Failed to call webhook: " + e.getMessage());
                                 return null;
                                 });
 
@@ -156,6 +160,7 @@ public class HdcBifromqPluginAuthProvider implements IAuthProvider {
 
                         }
                         catch (Exception e){
+                                log.error(e.getMessage());
 
                         }
         

@@ -66,3 +66,12 @@ mvn clean package
 
 The output plugin zip file will be generated in the target directory. Install the plugin by copying the zip file into the BifroMQ plugin folder. Ensure you verify the plugin is loaded correctly by checking the BifroMQ management console or
 logs.
+
+---bifrom mq start
+For auth plugin to work, set environment variables for passing downstream service for auth
+hard coded users are: saraheem, araheem, mqttrouter
+
+Windows Command Prompt
+
+$ set EXTRA_JVM_OPTS=-Dplugin.hdcauthprovider.url=http://localhost:5098
+$ standalone.bat start
