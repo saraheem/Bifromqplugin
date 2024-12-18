@@ -73,5 +73,5 @@ hard coded users are: saraheem, araheem, mqttrouter
 
 Windows Command Prompt
 
-$ set EXTRA_JVM_OPTS=-Dplugin.hdcauthprovider.url=http://localhost:5098
+$ set EXTRA_JVM_OPTS=-Dplugin.hdcauthprovider.url=http://localhost:5098 -DRetainMessageMatchLimit=1000
 $ standalone.bat start
